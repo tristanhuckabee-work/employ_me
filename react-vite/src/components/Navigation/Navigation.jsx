@@ -6,6 +6,9 @@ function Navigation() {
   return (
     <ul>
       <li>
+        <h1 id='logo'>employ me</h1>
+      </li>
+      <li>
         <NavLink to="/">Home</NavLink>
       </li>
 

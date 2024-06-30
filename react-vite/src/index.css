@@ -1,1 +1,13 @@
 /* TODO: Add sitewide styles */
+@font-face {
+    font-family: brushScriptStd;
+    src: url(../public/BrushScriptStd.otf);
+}
+#logo {
+    font-family: brushScriptStd, serif;
+}
+
+:root {}
+body {
+    font-family: sans-serif;
+}
