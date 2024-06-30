@@ -7,6 +7,9 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.client_routes import client_routes
+from .api.site_routes import site_routes
+from .api.ticket_routes import ticket_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -24,8 +27,11 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/admin/users')
-app.register_blueprint(auth_routes, url_prefix='/auth')
+app.register_blueprint(user_routes,   url_prefix='/users')
+app.register_blueprint(client_routes, url_prefix='/clients')
+app.register_blueprint(site_routes,   url_prefix='/sites')
+app.register_blueprint(ticket_routes,   url_prefix='/tickets')
+app.register_blueprint(auth_routes,   url_prefix='/auth')
 db.init_app(app)
 Migrate(app, db)
 

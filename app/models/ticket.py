@@ -20,7 +20,7 @@ class Ticket(db.Model):
 
     site = db.relationship('Site', back_populates='tickets')
     owner= db.relationship('User', back_populates='tickets')
-    images = db.relationship('Ticket_Image', back_populates='tickets')
+    images = db.relationship('Ticket_Image', back_populates='ticket')
 
     def to_dict(self):
         return {
@@ -31,6 +31,7 @@ class Ticket(db.Model):
             'status': self.status,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'site' : self.site.to_dict(),
-            'owner': self.owner.to_dict()
+            'site' : self.site.to_user_dict(),
+            'owner': self.owner.to_site_dict(),
+            'images': [image.to_dict() for image in self.images]
         }

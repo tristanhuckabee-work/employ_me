@@ -1,6 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-from .user_site_roles import user_site_roles
 
 
 class Site(db.Model):
@@ -19,7 +18,7 @@ class Site(db.Model):
 
     client = db.relationship('Client', back_populates='sites')
     tickets = db.relationship('Ticket', back_populates='site')
-    staff = db.relationship('User', secondary=user_site_roles, back_populates='sites')
+    staff = db.relationship('User_Site_Role', back_populates='site')
 
     def to_dict(self):
         return {
@@ -27,4 +26,11 @@ class Site(db.Model):
             'name': self.name,
             'phone_number': self.phone_number,
             'client' : self.client.to_dict(),
+            'staff'  : [user.to_site_dict() for user in self.staff]
+        }
+    def to_user_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'client' : self.client.to_dict()
         }

@@ -2,7 +2,6 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-from .user_site_roles import user_site_roles
 
 
 class User(db.Model, UserMixin):
@@ -21,7 +20,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
     tickets = db.relationship('Ticket', back_populates='owner')
-    sites = db.relationship('Site', secondary=user_site_roles, back_populates='staff')
+    sites = db.relationship('User_Site_Role', back_populates='user')
 
     @property
     def password(self):
@@ -38,5 +37,12 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'is_admin': 1 if self.is_admin else 0,
-            'email': self.email
+            'email': self.email,
+            'sites': [site.to_user_dict() for site in self.sites]
+        }
+    def to_site_dict(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
         }
