@@ -1,11 +1,13 @@
 import { useModal } from '../../context/Modal';
 
-function OpenModalMenuItem({
-  modalComponent, // component to render inside the modal
-  itemText, // text of the button that opens the modal
-  onItemClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
-}) {
+/**
+ * Creates a modal based on values passed in.
+ * @param {Function} modalComponent A functional React Component to render inside the modal
+ * @param {String} itemText The text of the modal button
+ * @param {Function} onItemClick optional: A function that will be called when the modal button is clicked
+ * @param {Function} onModalClose optional: A function that will be called when the modal is closed
+ */
+function OpenModalMenuItem({modalComponent, itemText, onItemClick, onModalClose}) {
   const { setModalContent, setOnModalClose } = useModal();
 
   const onClick = () => {
@@ -15,7 +17,7 @@ function OpenModalMenuItem({
   };
 
   return (
-    <li onClick={onClick}>{itemText}</li>
+    <button className='user_action_btn' onClick={onClick}>{itemText}</button>
   );
 }
 

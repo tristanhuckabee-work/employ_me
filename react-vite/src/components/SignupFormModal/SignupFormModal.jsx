@@ -39,53 +39,65 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="user_action_form">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
+        <div className='uaf_input_group'>
           <input
+            className='uaf_input'
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
+          <label className={!email ? 'uaf_label' : 'uaf_label filled'}>
+            Email
+          </label>
+          {errors.email && <p>{errors.email}</p>}
+        </div>
+        <div className='uaf_input_group'>
           <input
+            className='uaf_input'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
+          <label  className={!email ? 'uaf_label' : 'uaf_label filled'}>
+            Username
+          </label>
+          {errors.username && <p>{errors.username}</p>}
+        </div>
+        <div className='uaf_input_group'>
           <input
+            className='uaf_input'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
+          <label className={!password ? 'uaf_label' : 'uaf_label filled'}>
+            Password
+            </label>
+          {errors.password && <p>{errors.password}</p>}
+        </div>
+        <div className='uaf_input_group'>
           <input
+            className='uaf_input'
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+          <label className={!confirmPassword ? 'uaf_label' : 'uaf_label filled'}>
+            Confirm Password
+          </label>
+          {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        </div>
+        <button className='user_action_btn' type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

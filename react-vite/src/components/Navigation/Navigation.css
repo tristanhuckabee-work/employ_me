@@ -1,3 +1,95 @@
-.profile-dropdown {
+nav {
+  align-items: center;
+  background-color: var(--surface);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10vw;
+}
+#logo {
+  color: var(--on-background);
+  font-family: brushScriptStd, serif;
+  font-size: 1.5em;
+  line-height: 0.5em;
+  transition: all 0.2s linear;
+  width: fit-content;
+}
+#logo:hover {
+  color: var(--primary);
+}
+#user_actions {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.user_action_btn {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 30px;
+  color: var(--on-primary);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px;
+  width: 7vw;
+}
+.user_action_btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.user_icon {
+  cursor: pointer;
+}
+#user_options {
+  align-items: flex-start;
+  background-color: var(--surface);
+  border-left:2px solid var(--background);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 50px);
+  justify-content: space-between;
+  padding: 5px 10px 10px 10px;
   position: absolute;
+  right:0;
+  top: 50px;
+  transition: all 0.5s linear;
+  width: 20vw;
+}
+.uoud_sites {
+  background-color: var(--background);
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 5px 10px;
+  width: calc(20vw - 20px);
+}
+#user_options button, #offscreen_menu button{
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 30px;
+    color: var(--on-primary);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    z-index: 100;
+}
+#user_options button:hover {
+  background-color: var(--secondary-hover);
+}
+#offscreen_menu {
+  align-items: flex-start;
+  background-color: var(--surface);
+  border-left:2px solid var(--background);
+
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 50px);
+  justify-content: space-between;
+  padding: 5px 10px 10px 10px;
+  position: absolute;
+  right:-20vw;
+  top: 50px;
+  transition: all 0.5s linear;
+  width: 20vw;
 }

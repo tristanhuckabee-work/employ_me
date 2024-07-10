@@ -1,0 +1,45 @@
+import { useDispatch, useSelector } from "react-redux";
+import "./TicketList.css";
+import { useEffect } from "react";
+import { get_all_tickets, ticket_by_site } from "../../redux/ticket";
+import TicketCard from "./TicketCard";
+
+function TicketList() {
+    const dispatch = useDispatch()
+    const current_user = useSelector(state => state.session.user);
+    const site_ids = current_user?.sites?.map(site => {
+        return site.site.id;
+    });
+
+    useEffect(() => {
+        if (current_user.is_admin) {
+            dispatch(get_all_tickets());
+        } else {
+            dispatch(ticket_by_site(site_ids));
+        }
+    }, [dispatch, current_user])
+
+    const tickets = useSelector(state => state.tickets);
+    console.log(tickets);
+
+    const ticket_comp = () => {
+        let res = [];
+
+        for (let t in tickets) {
+            res.push(<TicketCard ticket={tickets[t]} />)
+        }
+
+        return res;
+    }
+
+    return (
+        <div className='ticket_list'>
+            <h3>Tickets</h3>
+            <div className='tl_list'>
+                {ticket_comp()}
+            </div>
+        </div>
+    )
+}
+
+export default TicketList;
