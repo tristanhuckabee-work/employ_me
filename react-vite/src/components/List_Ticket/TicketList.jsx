@@ -3,6 +3,7 @@ import "./TicketList.css";
 import { useEffect } from "react";
 import { get_all_tickets, ticket_by_site } from "../../redux/ticket";
 import TicketCard from "./TicketCard";
+import { FaPlusCircle } from "react-icons/fa";
 
 function TicketList() {
     const dispatch = useDispatch()
@@ -34,7 +35,13 @@ function TicketList() {
 
     return (
         <div className='ticket_list'>
-            <h3>Tickets</h3>
+            <div className="tl_header">
+                <h3>Tickets</h3>
+                <span>
+                    <FaPlusCircle size={28} />
+                    <p>New Ticket</p>
+                </span>
+            </div>
             <div className='tl_list'>
                 {ticket_comp()}
             </div>
