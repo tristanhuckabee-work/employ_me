@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./TicketList.css";
 import { useEffect } from "react";
 import { get_all_tickets, ticket_by_site } from "../../redux/ticket";
+import { useNavigate } from "react-router-dom";
 
 function TicketCard({ticket}) {
+    const navigate = useNavigate();
 
     const format_date = (date) => {
         let dates = {
@@ -16,7 +18,7 @@ function TicketCard({ticket}) {
     }
 
     return (
-        <div className='ticket_card'>
+        <div className='ticket_card' onClick={() => navigate(`/tickets/${ticket.id}`)}>
             <div className='tpriority'>{ticket.priority}</div>
             <div className='ticket_details'>
                 <h4>{ticket.title}</h4>

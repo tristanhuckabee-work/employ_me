@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./TicketList.css";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { FaPlusCircle } from "react-icons/fa";
 import { get_all_tickets, ticket_by_site } from "../../redux/ticket";
 import TicketCard from "./TicketCard";
-import { FaPlusCircle } from "react-icons/fa";
+import "./TicketList.css";
 
 function TicketList() {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const current_user = useSelector(state => state.session.user);
     const site_ids = current_user?.sites?.map(site => {
         return site.site.id;
@@ -21,7 +23,6 @@ function TicketList() {
     }, [dispatch, current_user])
 
     const tickets = useSelector(state => state.tickets);
-    console.log(tickets);
 
     const ticket_comp = () => {
         let res = [];
@@ -37,7 +38,7 @@ function TicketList() {
         <div className='ticket_list'>
             <div className="tl_header">
                 <h3>Tickets</h3>
-                <span>
+                <span onClick={() => navigate('/tickets/new')}>
                     <FaPlusCircle size={28} />
                     <p>New Ticket</p>
                 </span>
