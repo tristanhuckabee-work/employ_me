@@ -3,6 +3,7 @@ main {
     margin: 0 10vw;
     margin-top: 10px;
 }
+
 main h2 {
     color: var(--primary);
 }

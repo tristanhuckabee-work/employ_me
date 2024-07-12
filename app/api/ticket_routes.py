@@ -24,8 +24,8 @@ def tickets_by_id(id):
     Query for a ticket by id and returns that ticket as a dictionary
     """
     if current_user.is_admin:
-        tickets = Ticket.query.all()
-        return [ticket.to_dict() for ticket in tickets]
+        ticket = Ticket.query.get(id)
+        return [ticket.to_dict()]
     return {'errors' : ['Unauthorized']}
 
 

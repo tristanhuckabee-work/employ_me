@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import Main from '../components/Main';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
+import Ticket_Page from '../components/PageTicket/PageTicket';
 
 export const router = createBrowserRouter([
   {
@@ -28,8 +29,8 @@ export const router = createBrowserRouter([
             element: <h1>NEW TICKET FORM</h1>
           },
           {
-            path: ':ticketId',
-            element: <h1>TICKET</h1>
+            path: `:ticket_id`,
+            element: <Ticket_Page />
           },
           {
             path: '',

@@ -20,7 +20,7 @@ export const create_ticket = () => async dispatch => {
     return;
 }
 export const get_all_tickets = () => async dispatch => {
-    const res = await fetch('/tickets/all');
+    const res = await fetch('/api/tickets/all');
     const data = await res.json();
 
     if (res.ok) {
@@ -29,14 +29,21 @@ export const get_all_tickets = () => async dispatch => {
     }
     return data;
 }
-export const ticket_by_id = () => async dispatch => {
-    return;
+export const ticket_by_id = id => async dispatch => {
+    const res = await fetch(`/api/tickets/${id}`);
+    const data = await res.json();
+
+    if (res.ok) {
+        dispatch(getAllTickets(data));
+        return;
+    }
+    return data;
 }
 export const ticket_by_site = (site_ids) => async dispatch => {
     let site_tickets = [];
 
     for (let id in site_ids) {
-        const res = await fetch(`/tickets/by-site/${id}`);
+        const res = await fetch(`/api/tickets/by-site/${id}`);
         const data = await res.json();
         if (res.ok) {
             site_tickets = [...site_tickets, ...data.tickets];
@@ -66,12 +73,11 @@ function ticketReducer(state = {}, action) {
             //     newState[t.id] = t;
             // })
             // return newState;
+        case BY_ID:
         case GET_ALL:
             action.payload.forEach(t => {
                 newState[t.id] = t;
             })
-            return newState;
-        case BY_ID:
             return newState;
         case MINE:
             return newState;

@@ -23,7 +23,7 @@ function Main() {
         )
     } else {
         return (
-            <main>
+            <main >
                 <h1>Hello Stranger!</h1>
             </main>
         )
