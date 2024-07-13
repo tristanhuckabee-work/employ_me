@@ -24,11 +24,11 @@ function TicketList() {
 
     const tickets = useSelector(state => state.tickets);
 
-    const ticket_comp = () => {
+    const ticket_comp = (ts) => {
         let res = [];
 
-        for (let t in tickets) {
-            res.push(<TicketCard ticket={tickets[t]} />)
+        for (let t in ts) {
+            res.push(<TicketCard ticket={ts[t]} />)
         }
 
         return res;
@@ -44,7 +44,8 @@ function TicketList() {
                 </span>
             </div>
             <div className='tl_list'>
-                {ticket_comp()}
+                {ticket_comp(tickets?.active)}
+                {ticket_comp(tickets?.complete)}
             </div>
         </div>
     )

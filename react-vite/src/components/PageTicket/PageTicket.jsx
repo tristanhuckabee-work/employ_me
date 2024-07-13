@@ -11,7 +11,9 @@ function Ticket_Page() {
     useEffect(() => {
         dispatch(ticket_by_id(ticket_id));
     }, [dispatch, ticket_id]);
-    const ticket = useSelector(state => state?.tickets[ticket_id]);
+    const ticket = useSelector(state => state?.tickets?.current);
+    const current_user = useSelector(state => state?.session?.user);
+    console.log(current_user);
     console.log(ticket);
     const format_date = (date) => {
         let dates = {
@@ -65,6 +67,7 @@ function Ticket_Page() {
                 </div>
                 <aside id='ticket_notes'>
                     <h2>Progress Log</h2>
+                    <p>Work In Progress: Make it so people can add notes about steps taken to resolve the ticket.</p>
                 </aside>
 
             </div>

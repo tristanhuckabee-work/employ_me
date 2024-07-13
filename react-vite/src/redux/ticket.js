@@ -34,7 +34,7 @@ export const ticket_by_id = id => async dispatch => {
     const data = await res.json();
 
     if (res.ok) {
-        dispatch(getAllTickets(data));
+        dispatch(ticketById(data));
         return;
     }
     return data;
@@ -62,22 +62,29 @@ export const update_ticket = () => async dispatch => {
 export const delete_ticket = () => async dispatch => {
     return;
 }
-function ticketReducer(state = {}, action) {
+
+let initialState = {active: {}, complete: {}, current: null}
+function ticketReducer(state = initialState, action) {
     let newState = { ...state };
 
     switch (action.type) {
         case CREATE:
             return newState;
         case BY_SITE:
-            // action.payload.forEach(t => {
-            //     newState[t.id] = t;
-            // })
-            // return newState;
-        case BY_ID:
+            newState.active = {};
+            newState.complete = {};
+            action.payload.forEach(t => {
+                newState[t.status][t.id] = t;
+            })
+            return newState;
         case GET_ALL:
             action.payload.forEach(t => {
-                newState[t.id] = t;
+                newState[t.status][t.id] = t;
             })
+            return newState;
+        case BY_ID:
+            newState.current = action.payload;
+            console.log('TICKET BY ID: ', newState);
             return newState;
         case MINE:
             return newState;

@@ -25,7 +25,7 @@ def tickets_by_id(id):
     """
     if current_user.is_admin:
         ticket = Ticket.query.get(id)
-        return [ticket.to_dict()]
+        return ticket.to_dict()
     return {'errors' : ['Unauthorized']}
 
 
