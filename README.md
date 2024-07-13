@@ -1,6 +1,18 @@
 # EmployMe
 ![alt text](image.png)
-
+## Shape of State
+```bash
+state
+├ session
+│ └ user = { id, first_name, last_name, email, is_admin }
+├ tickets
+│ ├ current = { id, title, status, priority, description, created_at, updated_at, images = [...], owner = {...}, site = {...} }
+│ ├ passive = { ticket_id : {...}, ...other tickets }
+│ └ active = { ticket_id : {...}, ...other tickets }
+├ sites 
+├ clients
+└ ticket_notes
+```
 ## Run Locally
 1. Clone this repository (only this branch).
 2. Install dependencies.
